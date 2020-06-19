@@ -16,7 +16,6 @@ const useStyles = makeStyles({
 
 export default function DataTable(props) {
   const classes = useStyles();
-  console.log(props.columns, props.rows)
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
@@ -31,7 +30,11 @@ export default function DataTable(props) {
           {props.rows.map((row) => (
             <TableRow key={row.id}>
               {props.columns.map((col) => {
-                return <TableCell key={row.id + col.key}>{col.render ? col.render(row) : row[col.key]}</TableCell>;
+                return (
+                  <TableCell key={row.id + col.key}>
+                    {col.render ? col.render(row) : row[col.key]}
+                  </TableCell>
+                );
               })}
             </TableRow>
           ))}
