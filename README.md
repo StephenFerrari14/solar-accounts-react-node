@@ -1,19 +1,29 @@
-# React Express Example
+# React Express App
+Basic Express api surfacing account information to a React app with React Router routing.
 
-This project offers a simple example of how to set up a React project with Create React App and how to connect this app with an Express backend. React-Router is also used for routing.
+## Development
 
-## Prerequisites
-In order to run this project node.js and npm both need to have been installed.
+```
+git clone git@github.com:StephenFerrari14/solar-accounts-react-node.git  
+```
+To start the api
+```
+npm install
+npm start
+```
+To start the client
+```
+cd client
+npm install
+npm start
+```
+Open http://localhost:3000/  
 
 ## Deployment
-<ol>
-<li>Clone this repo</li>
-<li>Run npm start from react-express-example to start the Express app</li>
-<li>Run npm start from the client directory to start the React app</li>
-<li>Visit http://localhost:3000/</li>
-</ol>
+Deployed through Heroku
 
 ## Built With
 * [React.js](https://reactjs.org/)
 * [Express.js](https://expressjs.com/)
 * [React-Router](https://reacttraining.com/react-router/core/guides/philosophy)
+* [Material UI](https://material-ui.com/)
