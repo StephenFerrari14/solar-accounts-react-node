@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import DataTable from "../components/DataTable";
+import { Button } from "@material-ui/core";
 
 export default function Profile(props) {
   const { id } = useParams();
@@ -17,6 +18,9 @@ export default function Profile(props) {
   return (
     <div className="App">
       <h1>Profile</h1>
+      <div style={{display: "flex"}}>
+        <Link to="/"><Button variant="contained" style={{display: "inline-block"}}>Back to home</Button></Link>
+      </div>
       {props.customer.customer && (
         <div style={{ marginTop: "10px" }}>
           <span style={{ fontWeight: "bold" }}>

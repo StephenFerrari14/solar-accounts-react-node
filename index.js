@@ -24,10 +24,11 @@ app.get("/api/getAccounts", (req, res) => {
 app.get("/api/getCustomer/:id", (req, res) => {
   const customer_id = req.params.id;
   const accountCacheKey = `${customer_id}-accounts`;
-  const customer = customers.filter((item) => item.id == customer_id)[0];
+  const customer = customers.find((item) => item.id == customer_id);
   let customerAccounts = [];
   const cachedAccounts = cache.get(accountCacheKey);
 
+	// Check cache so we don't have to keep filtering for account info
   if (cachedAccounts) {
     customerAccounts = cachedAccounts;
   } else {

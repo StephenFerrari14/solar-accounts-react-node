@@ -4,6 +4,7 @@ import "./App.css";
 import SolarAccountManager from "./pages/SolarAccountManager";
 import Profile from "./pages/Profile";
 import Container from "@material-ui/core/Container";
+import { fetchAccounts, fetchCustomers, fetchCustomer } from "./services";
 
 class App extends Component {
   state = {
@@ -13,25 +14,15 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.fetchCustomers();
-    this.fetchAccounts();
+    // TODO Add loading spinners
+    fetchCustomers()
+      .then((customers) => this.setState({ customers }));
+    fetchAccounts()
+      .then((accounts) => this.setState({ accounts }));
   }
 
-  fetchAccounts = () => {
-    fetch("/api/getAccounts")
-      .then((res) => res.json())
-      .then((accounts) => this.setState({ accounts }));
-  };
-
-  fetchCustomers = () => {
-    fetch("/api/getCustomers")
-      .then((res) => res.json())
-      .then((customers) => this.setState({ customers }));
-  };
-
-  fetchCustomer = (id) => {
-    fetch(`/api/getCustomer/${id}`)
-      .then((res) => res.json())
+  getCustomer = (id) => {
+    fetchCustomer(id)
       .then((customer) => this.setState({ currentCustomer: customer }));
   };
 
@@ -41,7 +32,7 @@ class App extends Component {
         <Switch>
           <Route path="/profile/:id">
             <Profile
-              loadCustomer={this.fetchCustomer}
+              loadCustomer={this.getCustomer}
               customer={this.state.currentCustomer}
             ></Profile>
           </Route>
